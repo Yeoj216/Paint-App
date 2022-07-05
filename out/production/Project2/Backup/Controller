@@ -1,0 +1,108 @@
+package sample;
+
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
+
+import javafx.scene.control.ComboBox;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.canvas.*;
+import javafx.scene.paint.Color;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.EventListener;
+
+public class Controller {
+
+    @FXML
+    private ComboBox<String> thickness;
+
+    @FXML
+    private ComboBox<String> colors;
+
+    @FXML
+    private Pane canvasPane;
+
+
+
+//    public void addThicknessOption (ArrayList<String> options) {
+//        for(String option:options)
+//            thickness.getItems().add(option);
+//    }
+
+    @FXML
+    private void initialize(){
+        thickness.getItems().add("1.0");
+        thickness.getItems().add("2.0");
+        thickness.getItems().add("3.0");
+        thickness.getItems().add("4.0");
+        thickness.getItems().add("5.0");
+
+
+//        canvasPane = new Pane();
+//        color.getItems().add("Red");
+//        color.getItems().add("Black");
+    }
+
+//    @FXML
+//    private Button clear;
+//
+//    public void onClick(Event event){
+//
+//    }
+
+    @FXML
+    private void comboAction(ActionEvent event) {
+        String value = thickness.getValue();
+
+        if(value.equalsIgnoreCase("1.0")){
+            Main.changeThickness(1.0);
+        }
+        else if(value.equalsIgnoreCase("2.0")){
+            Main.changeThickness(2.0);
+        }
+        else if(value.equalsIgnoreCase("3.0")){
+            Main.changeThickness(3.0);
+        }
+        else if(value.equalsIgnoreCase("4.0")){
+            Main.changeThickness(4.0);
+        }
+    }
+
+    @FXML
+    private void onMousePressed(MouseEvent event){
+        Main.gc.beginPath();
+        Main.gc.lineTo(event.getSceneX(), event.getSceneY());
+        Main.gc.stroke();
+        System.out.println("On Mouse Pressed");
+    }
+
+    @FXML
+    private void onMouseDragged(MouseEvent event){
+        Main.gc.lineTo(event.getSceneX(), event.getSceneY());
+        Main.gc.stroke();
+        System.out.println("On Mouse Dragged");
+    }
+
+    public void addCanvas(Canvas canvas){
+        canvasPane = new Pane();
+        Main.gc.setStroke(Color.BLACK);
+        this.canvasPane.getChildren().add(canvas);
+        System.out.println("Canvas added");
+    }
+
+//    @FXML
+//    private void changeColor(ActionEvent event){
+//        String color = colors.getValue();
+//
+//        if(color.equalsIgnoreCase("Red"))
+//
+//    }
+
+
+
+}

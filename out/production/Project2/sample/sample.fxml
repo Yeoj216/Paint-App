@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <top>
+        <VBox prefHeight="190" BorderPane.alignment="CENTER"> <!--style="-fx-background-color: #03fcf4"-->
+            <MenuBar>
+                <menus>
+                    <Menu mnemonicParsing="false" text="File">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Close" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Delete" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="About" />
+                        </items>
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Unspecified Menu">
+                        <items>
+                            <MenuItem mnemonicParsing="false" text="Action 1" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+            <ToolBar style="-fx-spacing: 20px; -fx-background-color: #03fcf4">
+                <items>
+                    <!--                    <Label text="Thickness"/>-->
+                    <ComboBox fx:id="thickness" />
+               <HBox prefHeight="100.0" prefWidth="300.0">
+                  <children>
+      
+                          <VBox fx:id="colorPicker" prefHeight="69.0" prefWidth="185.0">
+                              <HBox>
+                                  <children>
+                                      <Label text="Red   " />
+                                      <Slider fx:id="red" max="255" min="0" value="0" />
+                                  </children>
+                              </HBox>
+                              <HBox>
+                                  <children>
+                                      <Label text="Green" />
+                                      <Slider fx:id="green" max="255" min="0" value="0" />
+      
+                                  </children>
+                              </HBox>
+                              <HBox>
+                                  <children>
+                                      <Label text="Blue   " />
+                                      <Slider fx:id="blue" max="255" min="0" value="0" />
+                                  </children>
+                              </HBox>
+                        <children>
+      
+                              <Slider fx:id="opacity" blockIncrement="0.1" max="1.0" min="0.0" value="0" />
+                          </children>
+                          </VBox>
+                     <Pane fx:id="colorViewer" prefHeight="100.0" prefWidth="100.0" />
+                  </children>
+               </HBox>
+                    <VBox>
+                        <Button fx:id="chooseColorBtn" mnemonicParsing="false" onAction="#chooseColor" text="Select Color" />
+                        <Button fx:id="resetColorBtn" mnemonicParsing="false" onAction="#resetColor" text="Reset Color" />
+                    </VBox>
+                    <ToggleButton fx:id="eraser" mnemonicParsing="false" text="Eraser" />
+                    <Button fx:id="addTextBtn" mnemonicParsing="false" onAction="#onAddText" text="Add Text" />
+                    <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#onClear" text="Clear" />
+                    <Button fx:id="undoBtn" mnemonicParsing="false" onAction="#onUndo" text="Undo" />
+                    <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#onSave" text="Save" />
+                    <Button fx:id="uploadBtn" mnemonicParsing="false" onAction="#onUpload" text="Upload" />
+                    <ComboBox fx:id="shapesDropDown" onAction="#drawShape" prefWidth="150.0" />
+                    <Button fx:id="fill" mnemonicParsing="false" onAction="#paintCan" text="Fill color" />
+                    <VBox>
+                        <children>
+                            <Button fx:id="RotateRBtn" onAction="#rotateRight" text="Rotate Right" />
+                            <Button fx:id="RotateLBtn" onAction="#rotateLeft" text="Rotate Left " />
+                        </children>
+                    </VBox>
+                </items>
+            </ToolBar>
+        </VBox>
+    </top>
+    <center>
+        <Canvas fx:id="canvas" height="750" style="-fx-background-color: #FFFFFF" width="2000.0" />
+    </center>
+</BorderPane>

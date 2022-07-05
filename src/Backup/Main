@@ -1,0 +1,118 @@
+package sample;
+
+import com.sun.org.apache.xml.internal.security.c14n.CanonicalizerSpi;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.canvas.*;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Pane root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Controller controller = new Controller();
+
+
+        primaryStage.setTitle("Painting Canva");
+
+        Scene scene = new Scene(root,1000,904);
+
+        gc = canvas.getGraphicsContext2D();
+        gc.setStroke(Color.BLACK);
+
+
+//        ComboBox comboBox = new ComboBox();
+//        root.getChildren().add(comboBox);
+
+
+//        root.setOnMousePressed(e-> {
+//            gc.beginPath();
+//            gc.lineTo(e.getSceneX(), e.getSceneY());
+//            gc.stroke();
+//        });
+//
+//
+//
+//        root.setOnMouseDragged(e->{
+//            gc.lineTo(e.getSceneX(), e.getSceneY());
+//            gc.stroke();
+//        });
+
+//        canvas.setLayoutY(52);
+//        root.getChildren().add(canvas);
+        controller.addCanvas(canvas);
+        primaryStage.setMaximized(false);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+
+    }
+//    It is drawn on the canvas using GraphicsContext
+    Canvas canvas = new Canvas(903,855);
+    static GraphicsContext gc;
+//    todo add color picker
+
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    public static void changeThickness(double thick){
+        gc.setLineWidth(thick);
+    }
+//
+//    public static void changeColor(String color){
+//
+//    }
+}
+
+
+
+        AtomicInteger drawShapesCounter = new AtomicInteger();
+        shapesDropDown.setOnAction(e->{
+            drawShapesCounter.getAndIncrement();
+            System.out.println(drawShapesCounter);
+            if(drawShapesCounter.get()==0 || drawShapesCounter.get()%2 == 0){
+                //        Screen normal drawing
+                pane.setOnMousePressed(a-> {
+                    pushUndo();
+                    gc.beginPath();
+                    gc.lineTo(a.getSceneX(), a.getSceneY());
+                    gc.stroke();
+                });
+
+                pane.setOnMouseClicked(z->{
+                    pushUndo();
+                    gc.beginPath();
+                    gc.lineTo(z.getSceneX(), z.getSceneY());
+                    gc.stroke();
+                });
+
+                pane.setOnMouseDragged(a->{
+                    gc.lineTo(a.getSceneX(), a.getSceneY());
+                    gc.stroke();
+                });
+            }
+            else{
+                drawShapes(gc,pane);
+                pane.setOnMouseDragged(a->{
+                    pushUndo();
+                });
+                pane.setOnMousePressed(a-> {
+                    pushUndo();
+                });
+            }
+        });

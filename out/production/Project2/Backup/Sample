@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="904.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <HBox id="toolbar" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="52.0" prefWidth="1000.0" style="-fx-border-style: solid inside;">
+         <padding>
+            <Insets bottom="5.0" left="15.0" right="15.0" top="12.0" />
+         </padding>
+         <children>
+            <ComboBox fx:id="thickness" onAction="#comboAction" prefWidth="150.0" promptText="Thickness">
+               <HBox.margin>
+                  <Insets left="10.0" right="35.0" />
+               </HBox.margin>
+            </ComboBox>
+            <ComboBox prefWidth="150.0" promptText="Color">
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </ComboBox>
+            <Button mnemonicParsing="false" text="Text">
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Clear">
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Undo">
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Save">
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" text="Upload">
+               <HBox.margin>
+                  <Insets right="35.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Pane fx:id="canvasPane" layoutY="51.0" onMouseDragEntered="#onMouseDrag" onMouseDragged="#onMouseDragged" onMousePressed="#onMousePressed" prefHeight="855.0" prefWidth="903.0" />
+   </children>
+</Pane>
